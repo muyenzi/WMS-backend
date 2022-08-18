@@ -1,0 +1,44 @@
+create model
+=========
+users
+npx sequelize-cli model:generate --name users --attributes fullname:string,email:string,role:string,password:string,isActive:boolean,organizationId:string
+
+schools
+=====
+npx sequelize-cli model:generate --name schools --attributes name:string,source:string,how_long:string,frequency:integer,level:string,cat_id:string,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
+
+health faclity
+=============
+npx sequelize-cli model:generate --name healthfacilities --attributes name:string,source:string,how_long:string,frequency:integer,type:string,cat_id:string,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
+
+organizations
+==========
+npx sequelize-cli model:generate --name organizations --attributes name:string,category:string,description:string
+
+households
+==========
+npx sequelize-cli model:generate --name households --attributes phoneNumber:string,source:string,how_long:string,frequency:integer,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
+
+publicplaces
+============
+npx sequelize-cli model:generate --name publicplaces --attributes name:string,source:string,how_long:string,frequency:integer,type:string,cat_id:string,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
+
+provinces
+=========
+npx sequelize-cli model:generate --name provinces --attributes Provinces:string
+
+districts
+=========
+npx sequelize-cli model:generate --name districts --attributes Districts:string,ProvinceId:integer
+
+sectors
+=========
+npx sequelize-cli model:generate --name sectors --attributes Sectors:string,DistrictId:integer
+
+cells
+=========
+npx sequelize-cli model:generate --name cells --attributes Cells:string,SectorId:integer
+
+villages
+=========
+npx sequelize-cli model:generate --name villages --attributes villages:string,CellId:integer
