@@ -6,6 +6,7 @@ module.exports = {
       fullname: 'Muyenzi Raissa',
       email: 'muyenzi@admin.com',
       password:'$2a$10$6//9CmG4NV13fO/KGreC7uejlgaY3i16FuAMmAX7wyuPSi.y4lqYa',
+      authCode:null,
       isActive:true,
       role:'Admin',
       createdAt: new Date(),

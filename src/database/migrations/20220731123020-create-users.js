@@ -19,6 +19,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      authCode: {
+        type: Sequelize.STRING
+      },
       isActive: {
         type: Sequelize.BOOLEAN
       },
