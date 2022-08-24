@@ -18,12 +18,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       frequency: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       level: {
         type: Sequelize.STRING
       },
-      cat_id: {
+      status: {
         type: Sequelize.STRING
       },
       prov_name: {

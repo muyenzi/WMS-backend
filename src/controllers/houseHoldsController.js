@@ -15,25 +15,26 @@ class houseHoldsController {
     static async addHouseHold(req, res) {
         try {
          
-          if (req.houseHold) {
+          if (req.household) {
             return res.status(400).json({
             responseCode:400,
             status: 'Failed',
             message: "HouseHold with this phone number already exist, please use anther!",
             });
           }
-          const { source,frequency,how_long,phoneNumber,prov_name,dis_name, sec_name,cell_name,vil_name }= req.body;
+          const { source,frequency,how_long,phoneNumber,prov_name,dis_name }= req.body;
             await households.create({
               id: uuidv4(),
               source,
               frequency,
               how_long,
               phoneNumber,
+              status:"Pending",
               prov_name,
               dis_name,
-              sec_name,
-              cell_name,
-              vil_name
+              sec_name:"1",
+              cell_name:"1",
+              vil_name:"1"
             });
             return res.status(200).json({
               responseCode:200,

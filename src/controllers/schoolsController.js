@@ -22,7 +22,7 @@ class schoolsController {
             message: "School with this name already exist, please use anther!",
             });
           }
-          const { name,source,frequency,how_long,level,prov_name,dis_name, sec_name,cell_name,vil_name } = req.body;
+          const { name,source,frequency,how_long,level,prov_name,dis_name } = req.body;
             await schools.create({
               id: uuidv4(),
               name,
@@ -30,12 +30,13 @@ class schoolsController {
               frequency,
               how_long,
               level,
+              status:"Pending",
               prov_name,
               dis_name,
-              sec_name,
-              cell_name,
-              vil_name,
-              cat_id:null
+              sec_name:"1",
+              cell_name:"1",
+              vil_name:"1"
+             
             });
             return res.status(200).json({
               responseCode:200,
@@ -53,6 +54,42 @@ class schoolsController {
     static async getSchools(req, res) {
         try {
           const schoolsData = await schools.findAll();
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: schoolsData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getRejectedSchools(req, res) {
+        try {
+          const schoolsData = await schools.findAll({
+          where:{status:"Rejected"}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: schoolsData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getApprovedSchools(req, res) {
+        try {
+          const schoolsData = await schools.findAll({
+          where:{status:"Approved"}
+          });
          return res.status(200).json({
             responseCode:200,
             status: 'Success',

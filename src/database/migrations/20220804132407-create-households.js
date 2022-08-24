@@ -18,7 +18,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       frequency: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.STRING
       },
       prov_name: {
         type: Sequelize.STRING

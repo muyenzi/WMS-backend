@@ -6,8 +6,10 @@ import CheckSchool from "../middleware/CheckSchool";
 
 const router=Router();
 
-router.post('/newschool',CheckSchool,schoolsController.addSchool);
+router.post('/new-chool',CheckSchool,schoolsController.addSchool);
 router.get('/',schoolsController.getSchools);
+router.get('/rejectedschools',schoolsController.getRejectedSchools);
+router.get('/approvedschools',schoolsController.getApprovedSchools);
 router.delete('/:id',schoolsController.deleteSchool);
 
 
