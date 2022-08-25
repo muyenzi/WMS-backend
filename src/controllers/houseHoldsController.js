@@ -95,6 +95,73 @@ class houseHoldsController {
          });
         }
       }
+
+      static async approveHouseHold(req,res){
+        try {
+          const houseHoldId=req.params.id;
+          const houseHold=await households.findOne({
+            where:{id:houseHoldId}
+          });
+          if(!houseHold){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid HouseHold Id"
+            });
+          }
+          else{
+            const approvedHouseHold = await households.update(
+              {
+                status: "Approved"
+               
+              },
+              { where: { id: houseHoldId }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Approved",
+              data: approvedHouseHold,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+      static async rejectHouseHold(req,res){
+        try {
+          const houseHoldId=req.params.id;
+          const houseHold=await households.findOne({
+            where:{id:houseHoldId}
+          });
+          if(!houseHold){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid houseHold Id"
+            });
+          }
+          else{
+            const rejectedhouseHold= await households.update(
+              {
+                status: "Rejected"
+               
+              },
+              { where: { id: houseHoldId }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Rejected",
+              data: rejectedhouseHold,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
       
 }
 

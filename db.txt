@@ -42,3 +42,5 @@ npx sequelize-cli model:generate --name cells --attributes Cells:string,SectorId
 villages
 =========
 npx sequelize-cli model:generate --name villages --attributes villages:string,CellId:integer
+
+npx sequelize-cli model:generate --name messages --attributes messages:string,ref_id:string

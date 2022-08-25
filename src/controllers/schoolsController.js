@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import dotenv from "dotenv";
 import Models from "../database/models";
 import generateRandomPassword from "../helpers/passwordGenerator";
-
+import { Sequelize } from "sequelize";
 const { users,schools } = Models;
 //const mailgun = require("mailgun-js");
 dotenv.config();
@@ -157,6 +157,112 @@ class schoolsController {
           });
         }
       }
+
+      static async approveSchool(req,res){
+        try {
+          const SchoolId=req.params.id;
+          const school=await schools.findOne({
+            where:{id:SchoolId}
+          });
+          if(!school){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid School Id"
+            });
+          }
+          else{
+            const approvedSchool = await schools.update(
+              {
+                status: "Approved"
+               
+              },
+              { where: { id: SchoolId }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Approved",
+              data: approvedSchool,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+      static async rejectSchool(req,res){
+        try {
+          const SchoolId=req.params.id;
+          const school=await schools.findOne({
+            where:{id:SchoolId}
+          });
+          if(!school){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid School Id"
+            });
+          }
+          else{
+            const rejectedSchool = await schools.update(
+              {
+                status: "Rejected"
+               
+              },
+              { where: { id: SchoolId }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Rejected",
+              data: rejectedSchool,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+
+      static async getAllSchoolGroupbysourceAndApproved(req,res){
+        try {
+          const Results = await schools.findAll(
+           
+            {
+            attributes: [
+              // [Sequelize.fn("sum", Sequelize.col("marks")), "total"],
+              [Sequelize.fn("COUNT", Sequelize.col("source")), "source"],
+            ],
+    
+            raw: true,
+          //  order: Sequelize.literal("total DESC"),
+            group: ["source"]
+          },
+          // {where:{status:"Rejected"}},
+          
+          );
+          if (Results) {
+          
+            return res.status(200).json({
+              status: 200,
+              message: "Success",
+              data: Results,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: "No Data Found",
+          });
+          
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+
   
 }
 

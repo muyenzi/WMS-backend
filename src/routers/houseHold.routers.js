@@ -11,6 +11,10 @@ router.post('/new-household',CheckHousehold,houseHoldsController.addHouseHold);
 router.get('/',houseHoldsController.getHouseHolds);
 router.delete('/:id',houseHoldsController.deleteHouseHold);
 
+router.put('/approve-household/:id',houseHoldsController.approveHouseHold);
+router.put('/reject-household/:id',houseHoldsController.rejectHouseHold);
+
+
 
 
 

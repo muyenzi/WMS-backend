@@ -12,6 +12,11 @@ router.get('/rejectedschools',schoolsController.getRejectedSchools);
 router.get('/approvedschools',schoolsController.getApprovedSchools);
 router.delete('/:id',schoolsController.deleteSchool);
 
+router.put('/approve-school/:id',schoolsController.approveSchool);
+router.put('/reject-school/:id',schoolsController.rejectSchool);
+
+
+router.get('/schoolsaprovedgroupedbysource',schoolsController.getAllSchoolGroupbysourceAndApproved);
 
 
 
