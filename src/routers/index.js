@@ -10,6 +10,7 @@ import healthFacilityRouters from "./healthfacility.routers";
 import publicPlacesRouters from "./publicPlace.routers";
 import houseHoldsRouters from "./houseHold.routers";
 import orgnizationRouters from "./organization.routers";
+import messagesRouters from "./message.routers";
 const router=Router();
 
 router.use('/api/auth',authRouters);
@@ -23,6 +24,7 @@ router.use('/api/healthfacilities',healthFacilityRouters);
 router.use('/api/publicplaces',publicPlacesRouters);
 router.use('/api/households',houseHoldsRouters);
 router.use('/api/organizations',orgnizationRouters);
+router.use('/api/messages',messagesRouters);
 
 
 export default router

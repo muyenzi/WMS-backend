@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      messages: {
+      message: {
         type: Sequelize.STRING
       },
       ref_id: {

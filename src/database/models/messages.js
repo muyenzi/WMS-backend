@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   messages.init({
-    messages: DataTypes.STRING,
+    message: DataTypes.STRING,
     ref_id: DataTypes.STRING
   }, {
     sequelize,
