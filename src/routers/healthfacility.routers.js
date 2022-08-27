@@ -9,6 +9,11 @@ router.get('/',healthfacilityController.getHealthFacilities);
 router.delete('/:id',healthfacilityController.deleteHealthFacility);
 
 
+router.put('/approvehealthfacility/:id',healthfacilityController.approveHealthFacility);
+router.put('/rejecthealthfacility/:id',healthfacilityController.rejectHealthfacility)
+
+
+
 
 
 export default router;

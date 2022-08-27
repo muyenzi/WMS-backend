@@ -22,20 +22,19 @@ class healthFacilityController {
             message: "Health Facility with this name already exist, please use anther!",
             });
           }
-          const { name,source,frequency,how_long,type,prov_name,dis_name, sec_name,cell_name,vil_name } = req.body;
+          const { name,source,how_long,type,prov_name,dis_name } = req.body;
             await healthfacilities.create({
               id: uuidv4(),
               name,
               source,
-              frequency,
               how_long,
               type,
+              status:"Pending",
               prov_name,
               dis_name,
-              sec_name,
-              cell_name,
-              vil_name,
-              cat_id:null
+              sec_name:"1",
+              cell_name:"1",
+              vil_name:"1"
             });
             return res.status(200).json({
               responseCode:200,
@@ -120,6 +119,74 @@ class healthFacilityController {
           });
         }
       }
+
+      static async approveHealthFacility(req,res){
+        try {
+          const Id=req.params.id;
+          const healthfacility=await healthfacilities.findOne({
+            where:{id:Id}
+          });
+          if(!healthfacility){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid  Id"
+            });
+          }
+          else{
+            const approvedHeathfacility = await healthfacilities.update(
+              {
+                status: "Approved"
+               
+              },
+              { where: { id: Id }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Approved",
+              data:  approvedHeathfacility,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+      static async rejectHealthfacility(req,res){
+        try {
+          const Id=req.params.id;
+          const healthfacility=await healthfacilities.findOne({
+            where:{id:Id}
+          });
+          if(!healthfacility){
+            return res.status(400).json({
+              status:400,
+              message:"Invalid  Id"
+            });
+          }
+          else{
+            const rejectedhealthfacility= await healthfacility.update(
+              {
+                status: "Rejected"
+               
+              },
+              { where: { id: Id }, returning: true }
+            );
+            return res.status(200).json({
+              status: 200,
+              message: "Rejected",
+              data: rejectedhealthfacility,
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({
+            status: 500,
+            message: error.message,
+          });
+        }
+      }
+      
   
 }
 

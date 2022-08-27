@@ -9,7 +9,7 @@ npx sequelize-cli model:generate --name schools --attributes name:string,source:
 
 health faclity
 =============
-npx sequelize-cli model:generate --name healthfacilities --attributes name:string,source:string,how_long:string,frequency:integer,type:string,cat_id:string,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
+npx sequelize-cli model:generate --name healthfacilities --attributes name:string,source:string,how_long:string,frequency:integer,type:string,status:string,prov_name:string,dis_name:string,sec_name:string,cell_name:string,vil_name:string
 
 organizations
 ==========
@@ -44,3 +44,23 @@ villages
 npx sequelize-cli model:generate --name villages --attributes villages:string,CellId:integer
 
 npx sequelize-cli model:generate --name messages --attributes messages:string,ref_id:string
+
+========================================================================================
+
+radar chart
+==========
+  <Grid item xs={12} md={6} lg={4}>
+          <AppCurrentSubject
+            title="Health Facilities"
+            chartLabels={['Safely managed services', 'Basic services', 'Surface water Services', 'unimproved water source', 'Limited services']}
+            chartData={[
+              { name: 'Kigali', data: [80, 50, 30, 40, 100, 20] },
+              { name: 'North', data: [20, 30, 40, 80, 20, 80] },
+              { name: 'South', data: [44, 76, 78, 13, 43, 10] },
+              { name: 'East', data: [44, 76, 78, 13, 43, 10] },
+              { name: 'West', data: [44, 76, 78, 13, 43, 10] }
+            ]}
+            chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
+          />
+        </Grid>
+===============================================================================================
