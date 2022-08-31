@@ -22,7 +22,7 @@ class healthFacilityController {
             message: "Health Facility with this name already exist, please use anther!",
             });
           }
-          const { name,source,how_long,type,prov_name,dis_name } = req.body;
+          const { name,source,how_long,type,prov_name,dis_name,sec_name,cell_name,vil_name} = req.body;
             await healthfacilities.create({
               id: uuidv4(),
               name,
@@ -32,9 +32,9 @@ class healthFacilityController {
               status:"Pending",
               prov_name,
               dis_name,
-              sec_name:"1",
-              cell_name:"1",
-              vil_name:"1"
+              sec_name,
+              cell_name,
+              vil_name
             });
             return res.status(200).json({
               responseCode:200,

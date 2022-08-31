@@ -17,13 +17,11 @@ module.exports = {
       how_long: {
         type: Sequelize.STRING
       },
-      frequency: {
-        type: Sequelize.INTEGER
-      },
+      
       type: {
         type: Sequelize.STRING
       },
-      cat_id: {
+      status: {
         type: Sequelize.STRING
       },
       prov_name: {

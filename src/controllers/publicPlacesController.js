@@ -15,27 +15,27 @@ class publicPlacesController {
     static async addPublicPlace(req, res) {
         try {
          
-          if (req.pubicplace) {
+          if (req.publicplace) {
             return res.status(400).json({
             responseCode:400,
             status: 'Failed',
             message: "PublicPlace with this name already exist, please use anther!",
             });
           }
-          const { name,source,frequency,how_long,type,prov_name,dis_name, sec_name,cell_name,vil_name } = req.body;
+          const { name,source,how_long,type,prov_name,dis_name, sec_name,cell_name,vil_name } = req.body;
             await publicplaces.create({
               id: uuidv4(),
               name,
               source,
-              frequency,
               how_long,
               type,
+              status:"Pending",
               prov_name,
               dis_name,
               sec_name,
               cell_name,
               vil_name,
-              cat_id:null
+             
             });
             return res.status(200).json({
               responseCode:200,
