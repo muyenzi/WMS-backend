@@ -15,6 +15,10 @@ router.delete('/:id',schoolsController.deleteSchool);
 router.put('/approve-school/:id',schoolsController.approveSchool);
 router.put('/reject-school/:id',schoolsController.rejectSchool);
 
+router.post("/schoolsbydistrictname",schoolsController.getSchoolByDistrictName)
+router.post("/schoolsbysectorname",schoolsController.getSchoolBySectorName)
+router.post("/schoolsbycellname",schoolsController.getSchoolByCellName)
+
 
 router.get('/schoolsaprovedgroupedbysource',schoolsController.getAllSchoolGroupbysourceAndApproved);
 

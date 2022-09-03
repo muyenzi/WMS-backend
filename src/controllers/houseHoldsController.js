@@ -65,7 +65,64 @@ class houseHoldsController {
             });
         }
       }
-
+      static async getHouseholdByDistrictName(req, res) {
+        try {
+          const {districtName}=req.body
+          const HouseholdData = await households.findAll({
+          where:{dis_name:districtName}
+          });
+      
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: HouseholdData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getHouseholdBySectorName(req, res) {
+        try {
+          const {sectorName}=req.body
+          const HouseholdData = await households.findAll({
+          where:{sec_name:sectorName}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: HouseholdData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getHouseholdByCellName(req, res) {
+        try {
+          const {cellName}=req.body
+          const HouseholdData = await households.findAll({
+          where:{cell_name:cellName}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: HouseholdData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
       static async deleteHouseHold(req, res) {
         try {
           const modelId = req.params.id;

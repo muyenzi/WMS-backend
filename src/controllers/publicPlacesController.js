@@ -19,7 +19,7 @@ class publicPlacesController {
             return res.status(400).json({
             responseCode:400,
             status: 'Failed',
-            message: "PublicPlace with this name already exist, please use anther!",
+            message: "PublicPlace with this name already exist, please use another!",
             });
           }
           const { name,source,how_long,type,prov_name,dis_name, sec_name,cell_name,vil_name } = req.body;
