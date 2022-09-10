@@ -66,7 +66,63 @@ class publicPlacesController {
             });
         }
       }
-
+      static async getPublicPlaceByDistrictName(req, res) {
+        try {
+          const {districtName}=req.body
+          const PublicPlaceData = await publicplaces.findAll({
+          where:{dis_name:districtName}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: PublicPlaceData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getPublicPlaceBySectorName(req, res) {
+        try {
+          const {sectorName}=req.body
+          const PublicPlaceData = await publicplaces.findAll({
+          where:{sec_name:sectorName}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: PublicPlaceData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
+      static async getPublicPlaceByCellName(req, res) {
+        try {
+          const {cellName}=req.body
+          const PublicPlaceData = await publicplaces.findAll({
+          where:{cell_name:cellName}
+          });
+         return res.status(200).json({
+            responseCode:200,
+            status: 'Success',
+            data: PublicPlaceData,
+          });
+        } catch (error) {
+         return res.status(500).json({
+            responseCode:500,
+            status: 'Failed',
+            message: error.message 
+            });
+        }
+      }
       static async deletePublicPlace(req, res) {
         try {
           const modelId = req.params.id;

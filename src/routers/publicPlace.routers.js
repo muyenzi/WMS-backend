@@ -11,6 +11,9 @@ router.post('/new-publicplace',CheckPublicPlace,publicPlacesController.addPublic
 router.get('/',publicPlacesController.getPublicPlaces);
 router.delete('/:id',publicPlacesController.deletePublicPlace);
 
+router.post('/publicplacebydistrictname',publicPlacesController.getPublicPlaceByDistrictName,)
+router.post('/publicplacebysectorname',publicPlacesController.getPublicPlaceBySectorName);
+router.post('/publicplacebycellname',publicPlacesController.getPublicPlaceByCellName);
 
 
 
